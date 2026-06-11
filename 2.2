@@ -1,0 +1,37 @@
+from abc import ABC, abstractmethod
+
+class Document(ABC):
+    @abstractmethod
+    def process(self):
+        pass
+
+
+class TextDocument(Document):
+    def process(self):
+        return "Обробка текстового документу"
+
+
+class SpreadsheetDocument(Document):
+    def process(self):
+        return "Обробка електронної таблиці"
+
+
+class PDFDocument(Document):
+    def process(self):
+        return "Обробка PDF-документу"
+
+
+def process_documents(documents):
+    for doc in documents:
+        print(doc.process())
+
+
+docs = [TextDocument(), SpreadsheetDocument(), PDFDocument()]
+process_documents(docs)
+print()
+docs2 = [PDFDocument(), PDFDocument(), TextDocument()]
+process_documents(docs2)
+
+print()
+docs3 = [SpreadsheetDocument(), TextDocument()]
+process_documents(docs3)
