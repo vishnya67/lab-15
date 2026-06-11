@@ -1,0 +1,35 @@
+from abc import ABC, abstractmethod
+
+class PaymentMethod(ABC):
+    @abstractmethod
+    def process_payment(self, amount):
+        pass
+
+
+class CreditCard(PaymentMethod):
+    def process_payment(self, amount):
+        return f"Оплата карткою: {amount} грн."
+
+
+class PayPal(PaymentMethod):
+    def process_payment(self, amount):
+        return f"Оплата через PayPal: {amount} грн."
+
+
+class BankTransfer(PaymentMethod):
+    def process_payment(self, amount):
+        return f"Банківський переказ: {amount} грн."
+
+
+def checkout(payment_method, amount):
+    print(payment_method.process_payment(amount))
+
+
+card = CreditCard()
+checkout(card, 1500)
+
+paypal = PayPal()
+checkout(paypal, 750)
+
+transfer = BankTransfer()
+checkout(transfer, 3000)
