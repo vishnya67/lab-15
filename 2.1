@@ -1,0 +1,34 @@
+class LightDevice:
+    def turn_on(self):
+        return "Світло увімкнено"
+
+    def turn_off(self):
+        return "Світло вимкнено"
+
+
+class Thermostat:
+    def set_temperature(self, temp):
+        return f"Температура встановлена на {temp}°C"
+
+
+class SecurityDevice:
+    def activate_alarm(self):
+        return "Сигналізацію активовано"
+
+
+class SmartHomeController(LightDevice, Thermostat, SecurityDevice):
+    def evening_mode(self):
+        print(self.turn_on())
+        print(self.set_temperature(22))
+        print(self.activate_alarm())
+
+
+controller = SmartHomeController()
+
+controller.evening_mode()
+
+print(controller.turn_off())
+print(controller.set_temperature(25))
+
+# MRO (порядок пошуку методів)
+print(SmartHomeController.__mro__)
